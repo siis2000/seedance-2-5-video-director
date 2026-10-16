@@ -60,7 +60,7 @@ git clone https://github.com/liyue-aigc/seedance-2-5-video-director.git \
 使用 $seedance-2-5-video-director，把我的视频创意整理成可复制的 Seedance 2.5 提示词。
 ```
 
-首次安装或当前会话首次调用时，Skill会强制展示学习指导、最小输入模板和四个示例，然后继续处理同一条用户请求。
+安装器明确提示刚完成安装时，Skill会展示一次学习指导；普通新对话会直接处理任务，不会重复教程。需要时可主动发送“显示 `$seedance-2-5-video-director` 使用教程”。
 
 ## 更新
 
@@ -157,7 +157,7 @@ python scripts/validate_skill.py
 
 - Skill前置元数据和名称
 - 必需文件及Markdown相对链接
-- 首次使用协议与学习内容
+- 安装引导触发规则与学习内容
 - `agents/openai.yaml` 调用名称
 - 测试案例格式、唯一ID和主要模式覆盖
 - 残留TODO或占位文本

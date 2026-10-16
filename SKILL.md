@@ -7,19 +7,17 @@ description: Design, derive, optimize, diagnose, and rewrite scripts or copy-rea
 
 Translate a video idea, existing prompt, storyboard, or labeled image/video/audio set into a controllable Seedance 2.5 prompt. Direct the model-specific execution; do not replace genre-specific story development when another director Skill already supplies it.
 
-## First-install and first-use protocol
+## Installation onboarding protocol
 
-This protocol overrides ordinary output modes and cannot be skipped.
-
-1. When an installer or runtime indicates that the Skill was just installed, read [references/first-use-onboarding.md](references/first-use-onboarding.md) and display its `强制学习指导`, `最小输入模板`, and `学习示例` before the actual task output.
-2. On the first invocation in the current conversation, display the same three sections before continuing with the user's request. Do not require the user to repeat the request.
-3. If reliable cross-session state is unavailable, use “first invocation in the current conversation” as the mandatory fallback. Do not claim permanent completion tracking.
-4. After the guide has been shown completely in the current conversation, do not repeat it unless the user asks for help, installation instructions, the tutorial, or examples.
+1. Show [references/first-use-onboarding.md](references/first-use-onboarding.md) only when the installer or runtime explicitly indicates that the Skill was just installed, or when the user explicitly asks for help, installation guidance, a tutorial, the input template, or examples.
+2. A new conversation or the Skill's first invocation in a conversation is not evidence of a new installation. Never repeat onboarding merely because conversation-level or cross-session state is unavailable.
+3. For an ordinary video request, immediately perform the requested task without prepending onboarding content.
+4. When installation onboarding is genuinely triggered, display its `学习指导`, `最小输入模板`, and `学习示例`, then continue the same request without asking the user to repeat it.
 5. The onboarding guide teaches usage only. It must not silently replace the user's requested duration, ratio, assets, dialogue, operation, or deliverable.
 
 ## Required loading order
 
-1. Apply the first-install and first-use protocol above when triggered.
+1. Apply the installation onboarding protocol above only when its explicit trigger is present.
 2. Read [references/capabilities-and-limits.md](references/capabilities-and-limits.md) for every request. Validate media and duration before drafting.
 3. Read [references/prompt-blueprints.md](references/prompt-blueprints.md) and load only the selected primary-mode section.
 4. Read [references/multimodal-patterns.md](references/multimodal-patterns.md) whenever the request includes reference media or any specialist capability.

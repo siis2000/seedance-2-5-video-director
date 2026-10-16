@@ -55,9 +55,9 @@ def validate_skill_frontmatter(errors: list[str]) -> None:
     if not description_match or len(description_match.group(1).strip()) < 80:
         fail("SKILL.md description is missing or too short", errors)
     required_phrases = [
-        "First-install and first-use protocol",
+        "Installation onboarding protocol",
         "references/first-use-onboarding.md",
-        "first invocation in the current conversation",
+        "A new conversation or the Skill's first invocation in a conversation is not evidence of a new installation",
     ]
     for phrase in required_phrases:
         if phrase not in text:
@@ -66,13 +66,15 @@ def validate_skill_frontmatter(errors: list[str]) -> None:
 
 def validate_onboarding(errors: list[str]) -> None:
     text = (ROOT / "references/first-use-onboarding.md").read_text(encoding="utf-8")
-    for heading in ("## 强制学习指导", "## 最小输入模板", "## 学习示例"):
+    for heading in ("## 学习指导", "## 最小输入模板", "## 学习示例"):
         if heading not in text:
             fail(f"onboarding missing section: {heading}", errors)
     if text.count("### 示例") < 4:
         fail("onboarding must contain at least four learning examples", errors)
     if f"${SKILL_NAME}" not in text:
         fail("onboarding minimal template must invoke the Skill by name", errors)
+    if "当前会话首次调用时" in text:
+        fail("onboarding must not trigger merely on the first invocation of a conversation", errors)
 
 
 def validate_markdown_links(errors: list[str]) -> None:
@@ -132,7 +134,7 @@ def validate_cases(errors: list[str]) -> None:
         if not isinstance(expected, list) or not expected:
             fail(f"case {case_id or index} expected must be a non-empty list", errors)
     required_categories = {
-        "first-use",
+        "onboarding",
         "basic-multimodal",
         "timestamp-30s",
         "long-video",
@@ -177,4 +179,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

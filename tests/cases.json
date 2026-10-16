@@ -1,12 +1,22 @@
 [
   {
-    "id": "first-use-guide-before-task",
-    "category": "first-use",
-    "request": "首次使用 $seedance-2-5-video-director，生成一个10秒咖啡广告提示词。",
+    "id": "ordinary-new-conversation-skips-guide",
+    "category": "onboarding",
+    "request": "新开对话后使用 $seedance-2-5-video-director，生成一个10秒咖啡广告提示词。",
     "expected": [
-      "先完整显示强制学习指导、最小输入模板和学习示例",
-      "学习指导结束后继续完成原始咖啡广告请求",
-      "不要求用户重复发送请求"
+      "不展示安装或新手教程",
+      "直接完成咖啡广告请求",
+      "不把新对话误判为刚安装"
+    ]
+  },
+  {
+    "id": "explicit-tutorial-request-shows-guide",
+    "category": "onboarding",
+    "request": "请显示 $seedance-2-5-video-director 的使用教程和示例。",
+    "expected": [
+      "显示学习指导、最小输入模板和学习示例",
+      "不声称每次新对话都必须重复",
+      "不要求提供视频任务"
     ]
   },
   {
@@ -129,4 +139,3 @@
     ]
   }
 ]
-
